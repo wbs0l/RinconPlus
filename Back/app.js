@@ -12,7 +12,9 @@ app.use(express.json()); // Middleware para parsear el body de las peticiones a 
 app.use('/food', foodRouter); // Rutas para el módulo de comida
 app.use('/drinks', drinksRouter); // Rutas para el módulo de bebidas
 
-
+app.get('/', (req, res) => {
+    res.send('API funcionando');
+}); // ruta raíz para verificar que el servidor está funcionando correctamente
 
 
 
