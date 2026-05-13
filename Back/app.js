@@ -1,5 +1,4 @@
 import express from 'express';
-import Default from './configPred.js';
 import {corsMiddleware} from './src/middlewares/cors.js';
 import {foodRouter} from './src/modules/food/food.routes.js';
 import {drinksRouter} from './src/modules/drinks/drinks.routes.js';
