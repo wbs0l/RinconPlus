@@ -19,7 +19,7 @@ export default function Carta() {
 
     const fetchMenuBebidasItems = async () => {
       try {
-        const res = await fetch("/menuBebidas.json");
+        const res = await fetch("https://rinconplus.onrender.com/drinks");
         const data = await res.json();
         setMenuBebidasItems(data);
       } catch (error) {

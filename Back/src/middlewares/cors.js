@@ -1,6 +1,6 @@
 import cors from 'cors';
 
-const ACCEPTED_ORIGINS= ['http://localhost:3000',  'http://127.0.0.1:5500', 'http://localhost:1235', 'https://rinconplus.onrender.com'] 
+const ACCEPTED_ORIGINS= ['http://localhost:3000',  'http://127.0.0.1:5500', 'http://localhost:1235', 'https://rinconplus.onrender.com', 'http://localhost:5173']; 
 
 
 // al ser pasado como parametro acceptedOrigns se puede configurar la lista de origenes permitidos desde el index.js o cualquier otro archivo que importe este middleware, lo que hace que sea mas reutilizable y flexible para diferentes entornos o necesidades.
