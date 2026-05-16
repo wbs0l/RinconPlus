@@ -9,7 +9,7 @@ export default function Carta() {
     // Simular fetch de datos (puedes reemplazar esto con una llamada real a una API)
     const fetchMenuComidaItems = async () => {
       try {
-        const res = await fetch("/menuComida.json");
+        const res = await fetch("https://rinconplus.onrender.com/food");
         const data = await res.json();
         setMenuComidaItems(data);
       } catch (error) {
@@ -30,15 +30,36 @@ export default function Carta() {
     fetchMenuComidaItems();
   }, []);
 
+  const categoryMAPfood = {
+    1: "Hamburguesas",
+    2: "Pastas",
+    3: "Mexicana",
+    4: "Ensaladas",
+    7: "Postres",
+    8: "Sopas",
+    9: "Pizzas",
+    10: "Pescados y Mariscos",
+    11: "Comida Vegana",
+    12: "Comida Vegetariana",
+  };
+
   // obtener categorías únicas comida y bebidas para los select
   const categoriesComida = [
     "Todas",
-    ...new Set(menuComidaItems.map((item) => item.category)),
+    ...new Set(
+      menuComidaItems.map((item) => categoryMAPfood[item.category_id]),
+    ),
   ];
 
+  const categoryMAP = {
+    5: "Alcoholicas",
+    6: "No Alcoholicas",
+    7: "Calientes",
+    8: "Frías",
+  };
   const categoriesBebidas = [
     "Todas",
-    ...new Set(menuBebidasItems.map((item) => item.category)),
+    ...new Set(menuBebidasItems.map((item) => categoryMAP[item.category_id])),
   ];
 
   const [selectedCategoryComida, setSelectedCategoryComida] = useState("Todas");
@@ -48,14 +69,15 @@ export default function Carta() {
     selectedCategoryComida === "Todas"
       ? menuComidaItems
       : menuComidaItems.filter(
-          (item) => item.category === selectedCategoryComida,
+          (item) =>
+            categoryMAPfood[item.category_id] === selectedCategoryComida, // se hace el filtro comparando la categoria seleccionada con la categoria del item, usando el categoryMAP para obtener el nombre de la categoria a partir del category_id del item
         );
 
   const itemsFiltradosBebida =
     selectedCategoryBebida === "Todas"
       ? menuBebidasItems
       : menuBebidasItems.filter(
-          (item) => item.category === selectedCategoryBebida,
+          (item) => categoryMAP[item.category_id] === selectedCategoryBebida,
         );
 
   return (
@@ -95,7 +117,7 @@ export default function Carta() {
                 {item.tag}
               </span>
 
-              {/* Nombre y Precio */}
+              {/* Nombre  */}
 
               <h2 className="text-xl font-bold text-amber-400">{item.name}</h2>
 
@@ -104,7 +126,7 @@ export default function Carta() {
 
               {/* Precio */}
               <span className="text-xl font-semibold text-green-600">
-                {item.price}
+                $ {item.price}
               </span>
             </div>
           </div>
@@ -130,14 +152,16 @@ export default function Carta() {
         {itemsFiltradosBebida.map((item) => (
           <div
             key={item.id}
-            className="bg-gray-950 rounded-3xl shadow-md overflow-hidden hover:shadow-lg shadow-amber-400 transition-shadow duration-300"
+            className="bg-gray-950  rounded-3xl shadow-md overflow-hidden hover:shadow-lg shadow-amber-400 transition-shadow duration-300"
           >
             {/* Imagen del plato */}
-            <img
-              src={item.image}
-              alt={item.name}
-              className="w-full h-56 object-cover"
-            />
+            <div className="w-full h-56 flex items-center justify-center overflow-hidden mt-5">
+              <img
+                src={item.image_url}
+                alt={item.name}
+                className="max-h-full object-contain rounded-2xl"
+              />
+            </div>
 
             <div className="p-5">
               {/* Etiqueta / Tag */}
@@ -154,7 +178,7 @@ export default function Carta() {
 
               {/* Precio */}
               <span className="text-xl font-semibold text-green-600">
-                {item.price}
+                $ {item.price}
               </span>
             </div>
           </div>
