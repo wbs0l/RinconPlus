@@ -38,7 +38,7 @@ function Admin() {
         setActiveSection={setActiveSection}
       />
 
-      <main className="flex-1 p-10">{renderSection()}</main>
+      <main className="flex-1 p-10 bg-gray-950">{renderSection()}</main>
     </div>
   );
 }
