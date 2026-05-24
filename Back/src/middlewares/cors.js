@@ -9,6 +9,8 @@ export const corsMiddleware=({ acceptedOrigins= ACCEPTED_ORIGINS } = {})=>{ // a
     return cors({ // se configura el middleware de CORS para permitir solo los origenes especificados
      origin : (origin, callback) => {
 
+        console.log("ORIGIN:", origin);
+
         // permitir requests sin origin
             if (!origin) {
                 return callback(null, true);
