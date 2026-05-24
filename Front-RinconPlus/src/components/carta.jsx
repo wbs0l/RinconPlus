@@ -120,7 +120,7 @@ export default function Carta() {
             >
               {/* Imagen del plato */}
               <img
-                src={item.image}
+                src={item.image_url}
                 alt={item.name}
                 className="w-full h-56 object-cover"
               />
