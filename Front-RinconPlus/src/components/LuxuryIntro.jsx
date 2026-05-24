@@ -95,8 +95,9 @@ export default function LuxuryIntro({ onSelectSection }) {
           className="px-6 py-3 bg-yellow-500 border rounded-2xl cursor-pointer text-black tracking-widest text-sm uppercase 
         hover:bg-yellow-400 transition-all duration-500 w-[200px]"
           onClick={() => onSelectSection("reserva")}
+          disabled="true"
         >
-          Agendar
+          Agendar (proximamente)
         </button>
       </motion.div>
     </div>

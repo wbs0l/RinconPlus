@@ -7,10 +7,19 @@ import CreateProduct from "../components/CreateProduct.jsx";
 import EditProduct from "../components/EditProduct.jsx";
 import DeleteProduct from "../components/DeleteProduct.jsx";
 import Reservas from "../components/Reservas.jsx";
+import { useEffect } from "react";
 
 function Admin() {
   // aqui vive la logica para mostrar cada sección del admin dependiendo de lo que se seleccione en el sidebar
   const [activeSection, setActiveSection] = useState("Productos");
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      window.location.href = "/login";
+    }
+  }, []);
 
   const renderSection = () => {
     switch (activeSection) {
@@ -25,8 +34,10 @@ function Admin() {
       case "Reservas":
         return <Reservas />;
       case "Logout":
+        // elimina token y user del localstorage del navegador
         localStorage.removeItem("token");
-        window.location.href = "/";
+        localStorage.removeItem("user");
+        window.location.href = "/login";
       default:
         return <ProductsTable />;
     }
