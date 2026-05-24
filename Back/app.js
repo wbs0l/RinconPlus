@@ -9,7 +9,6 @@ const PORT = process.env.PORT || 3000;
 const app = express();
 
 app.use(corsMiddleware()); // Middleware para manejar CORS
-app.options('*', corsMiddleware());
 app.use(express.json()); // Middleware para parsear el body de las peticiones a JSON
 
 app.use('/food', foodRouter); // Rutas para el módulo de comida
