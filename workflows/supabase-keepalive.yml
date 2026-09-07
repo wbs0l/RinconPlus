@@ -1,0 +1,30 @@
+name: Supabase Keep Alive
+
+on:
+  schedule:
+    # Ejecutar todos los días a las 04:17 UTC
+    - cron: "17 4 * * *"
+
+  # Permite ejecutarlo manualmente desde GitHub
+  workflow_dispatch:
+
+jobs:
+  keep-alive:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Keep Supabase active
+        run: |
+          curl \
+            --head \
+            --fail \
+            --silent \
+            --show-error \
+            --location \
+            --retry 3 \
+            --retry-delay 10 \
+            --connect-timeout 10 \
+            --max-time 30 \
+            "https://rinconplus.onrender.com/food"
+
+          echo "Supabase keep-alive ejecutado correctamente."
